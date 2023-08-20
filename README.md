@@ -5,7 +5,7 @@ example .env
 SERVER_URL="localhost"
 SERVER_PORT="8080"
 
-TO RUN: go run main.go
+TO RUN: air main.go
 
 Open your browser and go to SERVER_URL:SERVER_PORT
 / -> home
