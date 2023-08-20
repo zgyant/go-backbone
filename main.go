@@ -1,6 +1,7 @@
 package main
 
 import (
+	"go-backbone/configs"
 	"go-backbone/routes"
 	"go-backbone/src/utils"
 
@@ -10,6 +11,11 @@ import (
 func main() {
 
 	route := gin.Default()
+
+	//start db
+	configs.Init()
+
+	//initialize routes
 	routes.ApiRoute(route)
 
 	// Construct the address in the format "host:port"
