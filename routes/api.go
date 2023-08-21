@@ -1,16 +1,22 @@
 package routes
 
 import (
-	"go-backbone/src/controller"
+	"go-backbone/src/controllers"
+	"go-backbone/src/middlewares"
 
 	"github.com/gin-gonic/gin"
 )
 
 func ApiRoute(route *gin.Engine) {
-	route.GET("/", controller.GetServerHealth)
+	route.GET("/", controllers.GetServerHealth)
 
 	api := route.Group("/api")
 	{
-		api.GET("/", controller.GetApiHealth)
+		api.GET("/", controllers.GetApiHealth)
+	}
+
+	secure := route.Group("/api").Use(middlewares.Auth())
+	{
+		secure.GET("/secure", controllers.GetSecureApiHealth)
 	}
 }

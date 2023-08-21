@@ -12,15 +12,21 @@ func main() {
 
 	route := gin.Default()
 
-	//start db
-	configs.Init()
+	//start db & migrate
+	configs.DbInit()
+	configs.DbMigrate()
 
-	//initialize routes
+	//initialize api routes
 	routes.ApiRoute(route)
+	//initialize socket routes
+	routes.SocketRoute(route)
 
 	// Construct the address in the format "host:port"
 	address := utils.Env("SERVER_URL") + ":" + utils.Env("SERVER_PORT")
 
 	// Start the Gin server
-	route.Run(address)
+	err := route.Run(address)
+	if err != nil {
+		panic(err)
+	}
 }

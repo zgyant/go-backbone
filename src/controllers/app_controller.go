@@ -1,4 +1,4 @@
-package controller
+package controllers
 
 import (
 	"go-backbone/src/utils"
@@ -16,5 +16,11 @@ func GetServerHealth(contx *gin.Context) {
 func GetApiHealth(contx *gin.Context) {
 	contx.JSON(http.StatusOK, gin.H{
 		"message": utils.Bt(`/api is healthy`),
+	})
+}
+
+func GetSecureApiHealth(contx *gin.Context) {
+	contx.JSON(http.StatusOK, gin.H{
+		"message": utils.Bt(`secure /api is healthy`),
 	})
 }
